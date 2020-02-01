@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,9 +11,9 @@
 		D775BE3323DCF4B80011C11F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D775BE3223DCF4B80011C11F /* Assets.xcassets */; };
 		D775BE3923DCF4B80011C11F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D775BE3723DCF4B80011C11F /* LaunchScreen.storyboard */; };
 		D775BE4223DCF5170011C11F /* BLEKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775BE4123DCF5170011C11F /* BLEKeys.swift */; };
-		D775BE4423DCF5240011C11F /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775BE4323DCF5240011C11F /* BLEManager.swift */; };
+		D775BE4423DCF5240011C11F /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775BE4323DCF5240011C11F /* BluetoothManager.swift */; };
 		D775BE4623DCFCD50011C11F /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775BE4523DCFCD50011C11F /* RootViewController.swift */; };
-		D775BE4923DCFD6A0011C11F /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = D775BE4823DCFD6A0011C11F /* PromiseKit */; };
+		D78F59C123E62D25002B7687 /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F59C023E62D25002B7687 /* PeripheralManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +23,9 @@
 		D775BE3823DCF4B80011C11F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D775BE3A23DCF4B80011C11F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D775BE4123DCF5170011C11F /* BLEKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEKeys.swift; sourceTree = "<group>"; };
-		D775BE4323DCF5240011C11F /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		D775BE4323DCF5240011C11F /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		D775BE4523DCFCD50011C11F /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		D78F59C023E62D25002B7687 /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,7 +33,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D775BE4923DCFD6A0011C11F /* PromiseKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +72,8 @@
 			isa = PBXGroup;
 			children = (
 				D775BE4123DCF5170011C11F /* BLEKeys.swift */,
-				D775BE4323DCF5240011C11F /* BLEManager.swift */,
+				D775BE4323DCF5240011C11F /* BluetoothManager.swift */,
+				D78F59C023E62D25002B7687 /* PeripheralManager.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -94,7 +95,6 @@
 			);
 			name = Racecar;
 			packageProductDependencies = (
-				D775BE4823DCFD6A0011C11F /* PromiseKit */,
 			);
 			productName = Racecar;
 			productReference = D775BE2923DCF4B70011C11F /* Racecar.app */;
@@ -125,7 +125,6 @@
 			);
 			mainGroup = D775BE2023DCF4B70011C11F;
 			packageReferences = (
-				D775BE4723DCFD6A0011C11F /* XCRemoteSwiftPackageReference "PromiseKit" */,
 			);
 			productRefGroup = D775BE2A23DCF4B70011C11F /* Products */;
 			projectDirPath = "";
@@ -153,8 +152,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D78F59C123E62D25002B7687 /* PeripheralManager.swift in Sources */,
 				D775BE2D23DCF4B70011C11F /* AppDelegate.swift in Sources */,
-				D775BE4423DCF5240011C11F /* BLEManager.swift in Sources */,
+				D775BE4423DCF5240011C11F /* BluetoothManager.swift in Sources */,
 				D775BE4623DCFCD50011C11F /* RootViewController.swift in Sources */,
 				D775BE4223DCF5170011C11F /* BLEKeys.swift in Sources */,
 			);
@@ -348,25 +348,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		D775BE4723DCFD6A0011C11F /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/mxcl/PromiseKit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.13.1;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		D775BE4823DCFD6A0011C11F /* PromiseKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D775BE4723DCFD6A0011C11F /* XCRemoteSwiftPackageReference "PromiseKit" */;
-			productName = PromiseKit;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D775BE2123DCF4B70011C11F /* Project object */;
 }
