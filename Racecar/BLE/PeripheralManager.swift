@@ -23,6 +23,8 @@ class PeripheralManager: NSObject {
     init(_ peripheral: CBPeripheral) {
         self.peripheral = peripheral
         super.init()
+        
+        discoverServices()
     }
     
     func discoverServices() {
@@ -44,13 +46,7 @@ extension PeripheralManager: CBPeripheralDelegate {
             return
         }
         
-        guard let services = peripheral.services else {
-            print("no services")
-            return
-        }
-        
-        print("didDiscoverServices: \(services.count)")
-        services.forEach { peripheral.discoverCharacteristics(nil, for: $0) }
+        peripheral.services?.forEach { peripheral.discoverCharacteristics(nil, for: $0) }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
@@ -59,24 +55,16 @@ extension PeripheralManager: CBPeripheralDelegate {
             return
         }
         
-        guard let characteristics = service.characteristics else {
-            print("no characteristics")
-            return
-        }
-        
-        for characteristic in characteristics {
+        service.characteristics?.forEach { characteristic in
             if characteristic.uuid.isEqual(BLE_Characteristic_uuid_Rx)  {
                 rxCharacteristic = characteristic
                 
                 peripheral.setNotifyValue(true, for: characteristic)
                 peripheral.readValue(for: characteristic)
-                print("Rx Characteristic: \(characteristic.uuid)")
             }
             
             if characteristic.uuid.isEqual(BLE_Characteristic_uuid_Tx) {
-                txCharacteristic = characteristic
-                
-                print("Tx Characteristic: \(characteristic.uuid)")
+                txCharacteristic = characteristic                
             }
             
             peripheral.discoverDescriptors(for: characteristic)

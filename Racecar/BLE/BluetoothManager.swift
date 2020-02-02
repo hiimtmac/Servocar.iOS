@@ -12,24 +12,32 @@ import CoreBluetooth
 // https://github.com/bradhowes/Joystick
 // https://github.com/MitrofD/TLAnalogJoystick
 
+protocol BluetoothManagerDelegate: AnyObject {
+    func didConnect(to peripheral: CBPeripheral)
+    func didDisconnect(from peripheral: CBPeripheral)
+    func didDiscover()
+}
+
 class BluetoothManager: NSObject {
     lazy var manager: CBCentralManager = {
         let m = CBCentralManager(delegate: self, queue: nil)
         return m
     }()
-    
-    var peripheralManager: PeripheralManager?
         
-    var peripherals: [CBPeripheral] = []
+    weak var delegate: BluetoothManagerDelegate?
+    
     var isScanning = false
+    var peripherals: [CBPeripheral] = [] {
+        didSet {
+            delegate?.didDiscover()
+        }
+    }
     
     let autoConnect: Bool
     
     override init() {
         self.autoConnect = CommandLine.arguments.contains("--autoconnect")
         super.init()
-        
-        let _ = 500
         
         if autoConnect {
             startScanning()
@@ -40,10 +48,8 @@ class BluetoothManager: NSObject {
     func startScanning() {
         isScanning = true
         
-        manager.scanForPeripherals(
-            withServices: [BLEService_UUID],
-            options: [CBCentralManagerScanOptionAllowDuplicatesKey: false]
-        )
+        let options = [CBCentralManagerScanOptionAllowDuplicatesKey: false]
+        manager.scanForPeripherals(withServices: [BLEService_UUID], options: options)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) { [weak self] in
             self?.stopScanning()
@@ -61,22 +67,9 @@ class BluetoothManager: NSObject {
         manager.connect(peripheral, options: nil)
     }
     
-    func didConnectTo(peripheral: CBPeripheral) {
-        let manager = PeripheralManager(peripheral)
-        manager.delegate = self
-        
-        peripheralManager = manager
-    }
-    
     // MARK: Disconnections
-    func disconnect() {
-        guard let peripheral = peripheralManager?.peripheral else { return }
+    func disconnect(from peripheral: CBPeripheral) {
         manager.cancelPeripheralConnection(peripheral)
-    }
-    
-    func didDisconnect(peripheral: CBPeripheral) {
-        guard peripheral.identifier == peripheralManager?.peripheral.identifier else { return }
-        peripheralManager = nil
     }
 }
 
@@ -94,13 +87,12 @@ extension BluetoothManager: CBCentralManagerDelegate {
         
         if autoConnect {
             connect(to: peripheral)
-            stopScanning()
         }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         stopScanning()
-        didConnectTo(peripheral: peripheral)
+        delegate?.didConnect(to: peripheral)
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
@@ -108,10 +100,6 @@ extension BluetoothManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        didDisconnect(peripheral: peripheral)
+        delegate?.didDisconnect(from: peripheral)
     }
-}
-
-extension BluetoothManager: PeripheralManagerDelegate {
-    
 }
