@@ -8,6 +8,9 @@
 
 import UIKit
 
+// https://github.com/bradhowes/Joystick
+// https://github.com/MitrofD/TLAnalogJoystick
+
 class ActionViewController: UIViewController {
     
     override func viewDidLoad() {

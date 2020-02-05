@@ -14,6 +14,7 @@
 		D775BE4423DCF5240011C11F /* BluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775BE4323DCF5240011C11F /* BluetoothManager.swift */; };
 		D775BE4623DCFCD50011C11F /* ActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D775BE4523DCFCD50011C11F /* ActionViewController.swift */; };
 		D78F59C123E62D25002B7687 /* PeripheralManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D78F59C023E62D25002B7687 /* PeripheralManager.swift */; };
+		D7B2FAAC23EA419C0046245A /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7B2FAAB23EA419C0046245A /* AnalogJoystick.swift */; };
 		D7F3A22A23E76ADB00AEF90D /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F3A22923E76ADB00AEF90D /* ConnectionViewController.swift */; };
 		D7F3A22C23E76EF900AEF90D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7F3A22B23E76EF900AEF90D /* TabBarController.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		D775BE4323DCF5240011C11F /* BluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothManager.swift; sourceTree = "<group>"; };
 		D775BE4523DCFCD50011C11F /* ActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionViewController.swift; sourceTree = "<group>"; };
 		D78F59C023E62D25002B7687 /* PeripheralManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralManager.swift; sourceTree = "<group>"; };
+		D7B2FAAB23EA419C0046245A /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
 		D7F3A22923E76ADB00AEF90D /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		D7F3A22B23E76EF900AEF90D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +67,7 @@
 				D775BE2C23DCF4B70011C11F /* AppDelegate.swift */,
 				D7F3A22B23E76EF900AEF90D /* TabBarController.swift */,
 				D775BE4523DCFCD50011C11F /* ActionViewController.swift */,
+				D7B2FAAB23EA419C0046245A /* AnalogJoystick.swift */,
 				D7F3A22923E76ADB00AEF90D /* ConnectionViewController.swift */,
 				D775BE4023DCF50B0011C11F /* BLE */,
 				D775BE3223DCF4B80011C11F /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D78F59C123E62D25002B7687 /* PeripheralManager.swift in Sources */,
+				D7B2FAAC23EA419C0046245A /* AnalogJoystick.swift in Sources */,
 				D775BE2D23DCF4B70011C11F /* AppDelegate.swift in Sources */,
 				D7F3A22A23E76ADB00AEF90D /* ConnectionViewController.swift in Sources */,
 				D775BE4423DCF5240011C11F /* BluetoothManager.swift in Sources */,

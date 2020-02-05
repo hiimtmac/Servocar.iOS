@@ -9,9 +9,6 @@
 import Foundation
 import CoreBluetooth
 
-// https://github.com/bradhowes/Joystick
-// https://github.com/MitrofD/TLAnalogJoystick
-
 protocol BluetoothManagerDelegate: AnyObject {
     func didConnect(to peripheral: CBPeripheral)
     func didDisconnect(from peripheral: CBPeripheral)
